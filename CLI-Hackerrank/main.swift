@@ -127,6 +127,7 @@ func diagonalDifference() {
 
 
 /*
+ https://www.hackerrank.com/challenges/maximum-element?h_r=internal-search
  Sample Input
  
  10
@@ -243,39 +244,17 @@ func balancedBrackets() {
 
 func equalStacks() {
     
-    var one: (stack: [Int], height: Int) = ([], 0)
-    var two: (stack: [Int], height: Int) = ([], 0)
-    var three: (stack: [Int], height: Int) = ([], 0)
+    _ = readLine()!.components(separatedBy: " ").map{ Int($0)! }
     
-    let stackCounts = readLine()!.components(separatedBy: " ").map{ Int($0)! }
+    var one: (stack: [Int], height: Int) = (readLine()!.components(separatedBy: " ").map{ Int($0)! }.reversed(), 0)
+    var two: (stack: [Int], height: Int) = (readLine()!.components(separatedBy: " ").map{ Int($0)! }.reversed(), 0)
+    var three: (stack: [Int], height: Int) = (readLine()!.components(separatedBy: " ").map{ Int($0)! }.reversed(), 0)
     
-    for stackNum in 1...stackCounts.count {
-        let thisStackArr = readLine()!.components(separatedBy: " ").map{ Int($0)! }
-        for element in thisStackArr {
-            switch stackNum {
-            case 1:
-                one.stack.append(element)
-            case 2:
-                two.stack.append(element)
-            case 3:
-                three.stack.append(element)
-            default:
-                break
-            }
-        }
-    }
-    one.stack = one.stack.reversed()
-    two.stack = two.stack.reversed()
-    three.stack = three.stack.reversed()
     one.height = one.stack.reduce(0, +)
     two.height = two.stack.reduce(0, +)
     three.height = three.stack.reduce(0, +)
     
-    
     while !(one.height == two.height && two.height == three.height) {
-        print("one \(one)")
-        print("two \(two)")
-        print("three \(three)")
         if one.height >= two.height && one.height >= three.height {
             one.height -= one.stack.popLast()!
         } else if two.height >= one.height && two.height >= three.height {
@@ -297,20 +276,6 @@ print("enter the inputs")
 //maximumElement()
 //balancedBrackets()
 equalStacks()
-
-//print("Enter a function")
-//
-//while true {
-//    if let function = readLine() {
-//        switch function {
-//            case "simpleArraySum":
-//            simpleArraySum()
-//        default:
-//            print("whoops")
-//        }
-//    }
-//}
-
 
 
 
